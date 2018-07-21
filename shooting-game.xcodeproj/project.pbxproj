@@ -22,6 +22,7 @@
 		0DFC51AC2102C27400909333 /* asteroid2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A52102C27300909333 /* asteroid2.png */; };
 		0DFC51AD2102C27400909333 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A62102C27400909333 /* spaceship.png */; };
 		0DFC51AE2102C27400909333 /* asteroid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A72102C27400909333 /* asteroid1.png */; };
+		0DFC51B02102D4C300909333 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51AF2102D4C300909333 /* Explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		0DFC51A52102C27300909333 /* asteroid2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid2.png; sourceTree = "<group>"; };
 		0DFC51A62102C27400909333 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
 		0DFC51A72102C27400909333 /* asteroid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid1.png; sourceTree = "<group>"; };
+		0DFC51AF2102D4C300909333 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				0DFC518B2102B92200909333 /* GameScene.sks */,
 				0DFC518D2102B92200909333 /* Actions.sks */,
 				0DFC518F2102B92200909333 /* GameScene.swift */,
+				0DFC51AF2102D4C300909333 /* Explosion.sks */,
 				0DFC51912102B92200909333 /* GameViewController.swift */,
 				0DFC51932102B92200909333 /* Main.storyboard */,
 				0DFC51962102B92400909333 /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 				0DFC51952102B92200909333 /* Main.storyboard in Resources */,
 				0DFC51AD2102C27400909333 /* spaceship.png in Resources */,
 				0DFC518C2102B92200909333 /* GameScene.sks in Resources */,
+				0DFC51B02102D4C300909333 /* Explosion.sks in Resources */,
 				0DFC51972102B92400909333 /* Assets.xcassets in Resources */,
 				0DFC51A92102C27400909333 /* heart.png in Resources */,
 				0DFC51AB2102C27400909333 /* earth.png in Resources */,
