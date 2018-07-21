@@ -46,27 +46,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel: SKLabelNode!
     
     override func didMove(to view: SKView) {
-        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
-        physicsWorld.contactDelegate = self
-        self.earth = SKSpriteNode(imageNamed: "earth")
-        self.earth.xScale = 1.5
-        self.earth.yScale = 0.3
-        self.earth.position = CGPoint(x: 0, y: -frame.height / 2)
-        self.earth.zPosition = -1.0
-        self.earth.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.width, height: 100))
-        self.earth.physicsBody?.categoryBitMask = earthCategory //そのノードのIDに相当するもの(2進数)を入れる
-        self.earth.physicsBody?.contactTestBitMask = asteroidCategory //衝突する相手のID
-        self.earth.physicsBody?.collisionBitMask = 0
-        addChild(self.earth)
+
+        addEarth()
         
-        self.spaceship = SKSpriteNode(imageNamed: "spaceship")
-        self.spaceship.scale(to: CGSize(width: frame.width / 5, height: frame.width / 5))
-        self.spaceship.position = CGPoint(x: 0, y: self.earth.frame.maxY + 50)
-        self.spaceship.physicsBody = SKPhysicsBody(circleOfRadius: self.spaceship.frame.width * 0.1)
-        self.spaceship.physicsBody?.categoryBitMask = spaceshipCategory
-        self.spaceship.physicsBody?.contactTestBitMask = asteroidCategory
-        self.spaceship.physicsBody?.collisionBitMask = 0
-        addChild(self.spaceship)
+        addSpaceship()
         
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, _) in
@@ -79,25 +62,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addAsteroid()
         })
         
-        for i in 1...5 {
-            let heart = SKSpriteNode(imageNamed: "heart")
-            heart.position = CGPoint(x: -frame.width / 2 + heart.frame.height * CGFloat(i), y: frame.height / 2 - heart.frame.height)
-            addChild(heart)
-            hearts.append(heart)
-        }
+        addHP()
         
-        scoreLabel = SKLabelNode(text: "Score: 0")
-        scoreLabel.fontName = "Papyrus"
-        scoreLabel.fontSize = 50
-        scoreLabel.position = CGPoint(x: -frame.width / 2 + scoreLabel.frame.width / 2 + 50, y: frame.height / 2 - scoreLabel.frame.height * 5)
-        addChild(scoreLabel)
+        addScoreLabel()
         
-        let bestScore = UserDefaults.standard.integer(forKey: "bestScore")
-        let bestScoreLabel = SKLabelNode(text: "Best Score: \(bestScore)")
-        bestScoreLabel.fontName = "Papyrus"
-        bestScoreLabel.fontSize = 30
-        bestScoreLabel.position = scoreLabel.position.applying(CGAffineTransform(translationX: 0, y: -bestScoreLabel.frame.height * 1.5))
-        addChild(bestScoreLabel)
+        addBestScoreLabel()
         
         timerForAsteroud = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true, block: { _ in
             self.asteroudDuration -= 0.5
@@ -105,46 +74,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didSimulatePhysics() {
-        let nextPosition = self.spaceship.position.x + self.accelaration * 50
-        if nextPosition > frame.width / 2 - 30 { return }
-        if nextPosition < -frame.width / 2 + 30 { return }
-        self.spaceship.position.x = nextPosition
+        moveSpaceship()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isPaused { return }
-        let missile = SKSpriteNode(imageNamed: "missile")
-        missile.position = CGPoint(x: self.spaceship.position.x, y: self.spaceship.position.y + 50)
-        missile.physicsBody = SKPhysicsBody(circleOfRadius: missile.frame.height / 2)
-        missile.physicsBody?.categoryBitMask = missileCategory
-        missile.physicsBody?.contactTestBitMask = asteroidCategory
-        missile.physicsBody?.collisionBitMask = 0
-        addChild(missile)
         
-        let moveToTop = SKAction.moveTo(y: frame.height + 10, duration: 0.3)
-        let remove = SKAction.removeFromParent()
-        missile.run(SKAction.sequence([moveToTop, remove]))
-    }
-    
-    //惑星を追加して上から下に流れる処理
-    func addAsteroid() {
-        let names = ["asteroid1", "asteroid2", "asteroid3"]
-        let index = Int(arc4random_uniform(UInt32(names.count)))
-        let name = names[index]
-        let asteroid = SKSpriteNode(imageNamed: name)
-        let random = CGFloat(arc4random_uniform(UINT32_MAX)) / CGFloat(UINT32_MAX)
-        let positionX = frame.width * (random - 0.5)
-        asteroid.position = CGPoint(x: positionX, y: frame.height / 2 + asteroid.frame.height)
-        asteroid.scale(to: CGSize(width: 70, height: 70))
-        asteroid.physicsBody = SKPhysicsBody(circleOfRadius: asteroid.frame.width)
-        asteroid.physicsBody?.categoryBitMask = asteroidCategory
-        asteroid.physicsBody?.contactTestBitMask = missileCategory + spaceshipCategory + earthCategory
-        asteroid.physicsBody?.collisionBitMask = 0
-        addChild(asteroid)
-        
-        let move = SKAction.moveTo(y: -frame.height / 2 - asteroid.frame.height, duration: asteroudDuration)
-        let remove = SKAction.removeFromParent()
-        asteroid.run(SKAction.sequence([move, remove]))
+        addAndLaunchMissile()
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -183,6 +119,104 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameOver()
             }
         }
+    }
+
+    
+    //惑星を追加して上から下に流れる処理
+    func addAsteroid() {
+        let names = ["asteroid1", "asteroid2", "asteroid3"]
+        let index = Int(arc4random_uniform(UInt32(names.count)))
+        let name = names[index]
+        let asteroid = SKSpriteNode(imageNamed: name)
+        let random = CGFloat(arc4random_uniform(UINT32_MAX)) / CGFloat(UINT32_MAX)
+        let positionX = frame.width * (random - 0.5)
+        asteroid.position = CGPoint(x: positionX, y: frame.height / 2 + asteroid.frame.height)
+        asteroid.scale(to: CGSize(width: 70, height: 70))
+        asteroid.physicsBody = SKPhysicsBody(circleOfRadius: asteroid.frame.width)
+        asteroid.physicsBody?.categoryBitMask = asteroidCategory
+        asteroid.physicsBody?.contactTestBitMask = missileCategory + spaceshipCategory + earthCategory
+        asteroid.physicsBody?.collisionBitMask = 0
+        addChild(asteroid)
+        
+        let move = SKAction.moveTo(y: -frame.height / 2 - asteroid.frame.height, duration: asteroudDuration)
+        let remove = SKAction.removeFromParent()
+        asteroid.run(SKAction.sequence([move, remove]))
+    }
+    
+    //地球を画面下部に表示
+    func addEarth() {
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        physicsWorld.contactDelegate = self
+        self.earth = SKSpriteNode(imageNamed: "earth")
+        self.earth.xScale = 1.5
+        self.earth.yScale = 0.3
+        self.earth.position = CGPoint(x: 0, y: -frame.height / 2)
+        self.earth.zPosition = -1.0
+        self.earth.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frame.width, height: 100))
+        self.earth.physicsBody?.categoryBitMask = earthCategory //そのノードのIDに相当するもの(2進数)を入れる
+        self.earth.physicsBody?.contactTestBitMask = asteroidCategory //衝突する相手のID
+        self.earth.physicsBody?.collisionBitMask = 0
+        addChild(self.earth)
+    }
+
+    //宇宙船を表示
+    func addSpaceship() {
+        self.spaceship = SKSpriteNode(imageNamed: "spaceship")
+        self.spaceship.scale(to: CGSize(width: frame.width / 5, height: frame.width / 5))
+        self.spaceship.position = CGPoint(x: 0, y: self.earth.frame.maxY + 50)
+        self.spaceship.physicsBody = SKPhysicsBody(circleOfRadius: self.spaceship.frame.width * 0.1)
+        self.spaceship.physicsBody?.categoryBitMask = spaceshipCategory
+        self.spaceship.physicsBody?.contactTestBitMask = asteroidCategory
+        self.spaceship.physicsBody?.collisionBitMask = 0
+        addChild(self.spaceship)
+    }
+
+    func moveSpaceship() {
+        let nextPosition = self.spaceship.position.x + self.accelaration * 50
+        if nextPosition > frame.width / 2 - 30 { return }
+        if nextPosition < -frame.width / 2 + 30 { return }
+        self.spaceship.position.x = nextPosition
+    }
+    
+    //画面上部にHP表示
+    func addHP() {
+        for i in 1...5 {
+            let heart = SKSpriteNode(imageNamed: "heart")
+            heart.position = CGPoint(x: -frame.width / 2 + heart.frame.height * CGFloat(i), y: frame.height / 2 - heart.frame.height)
+            addChild(heart)
+            hearts.append(heart)
+        }
+    }
+    
+    func addScoreLabel() {
+        scoreLabel = SKLabelNode(text: "Score: 0")
+        scoreLabel.fontName = "Papyrus"
+        scoreLabel.fontSize = 50
+        scoreLabel.position = CGPoint(x: -frame.width / 2 + scoreLabel.frame.width / 2 + 50, y: frame.height / 2 - scoreLabel.frame.height * 5)
+        addChild(scoreLabel)
+    }
+    
+    func addBestScoreLabel() {
+        let bestScore = UserDefaults.standard.integer(forKey: "bestScore")
+        let bestScoreLabel = SKLabelNode(text: "Best Score: \(bestScore)")
+        bestScoreLabel.fontName = "Papyrus"
+        bestScoreLabel.fontSize = 30
+        bestScoreLabel.position = scoreLabel.position.applying(CGAffineTransform(translationX: 0, y: -bestScoreLabel.frame.height * 1.5))
+        addChild(bestScoreLabel)
+    }
+    
+    func addAndLaunchMissile() {
+        let missile = SKSpriteNode(imageNamed: "missile")
+        missile.position = CGPoint(x: self.spaceship.position.x, y: self.spaceship.position.y + 50)
+        missile.physicsBody = SKPhysicsBody(circleOfRadius: missile.frame.height / 2)
+        missile.physicsBody?.categoryBitMask = missileCategory
+        missile.physicsBody?.contactTestBitMask = asteroidCategory
+        missile.physicsBody?.collisionBitMask = 0
+        addChild(missile)
+        
+        let moveToTop = SKAction.moveTo(y: frame.height + 10, duration: 0.3)
+        let remove = SKAction.removeFromParent()
+        missile.run(SKAction.sequence([moveToTop, remove]))
     }
     
     func gameOver() {
