@@ -83,6 +83,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontSize = 50
         scoreLabel.position = CGPoint(x: -frame.width / 2 + scoreLabel.frame.width / 2 + 50, y: frame.height / 2 - scoreLabel.frame.height * 5)
         addChild(scoreLabel)
+        
+        let bestScore = UserDefaults.standard.integer(forKey: "bestScore")
+        let bestScoreLabel = SKLabelNode(text: "Best Score: \(bestScore)")
+        bestScoreLabel.fontName = "Papyrus"
+        bestScoreLabel.fontSize = 30
+        bestScoreLabel.position = scoreLabel.position.applying(CGAffineTransform(translationX: 0, y: -bestScoreLabel.frame.height * 1.5))
+        addChild(bestScoreLabel)
     }
     
     override func didSimulatePhysics() {
@@ -170,6 +177,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //trueにするとゲームを一時停止できる
         isPaused = true
         timer?.invalidate()
+        let bestScore = UserDefaults.standard.integer(forKey: "bestScore")
+        if score > bestScore {
+            UserDefaults.standard.set(score, forKey: "bestScore")
+        }
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
             self.gameVC.dismiss(animated: true, completion: nil)
         }
