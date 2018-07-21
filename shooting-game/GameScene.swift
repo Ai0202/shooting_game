@@ -6,6 +6,9 @@
 //  Copyright © 2018年 Atsushi. All rights reserved.
 //
 
+// 参考URL
+// https://qiita.com/snowman_mh/items/2fd30a06b49d412bde88
+
 import SpriteKit
 import GameplayKit
 import CoreMotion
@@ -14,6 +17,8 @@ class GameScene: SKScene {
     
     let motionManager = CMMotionManager()
     var accelaration: CGFloat = 0.0
+    
+    var timer: Timer?
     
     var earth: SKSpriteNode!
     var spaceship: SKSpriteNode!
@@ -37,6 +42,10 @@ class GameScene: SKScene {
             let a = data.acceleration
             self.accelaration = CGFloat(a.x) * 0.75 + self.accelaration * 0.25
         }
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _  in
+            self.addAsteroid()
+        })
     }
     
     override func didSimulatePhysics() {
@@ -54,6 +63,23 @@ class GameScene: SKScene {
         let moveToTop = SKAction.moveTo(y: frame.height + 10, duration: 0.3)
         let remove = SKAction.removeFromParent()
         missile.run(SKAction.sequence([moveToTop, remove]))
+    }
+    
+    //惑星を追加して上から下に流れる処理
+    func addAsteroid() {
+        let names = ["asteroid1", "asteroid2", "asteroid3"]
+        let index = Int(arc4random_uniform(UInt32(names.count)))
+        let name = names[index]
+        let asteroid = SKSpriteNode(imageNamed: name)
+        let random = CGFloat(arc4random_uniform(UINT32_MAX)) / CGFloat(UINT32_MAX)
+        let positionX = frame.width * (random - 0.5)
+        asteroid.position = CGPoint(x: positionX, y: frame.height / 2 + asteroid.frame.height)
+        asteroid.scale(to: CGSize(width: 70, height: 70))
+        addChild(asteroid)
+        
+        let move = SKAction.moveTo(y: -frame.height / 2 - asteroid.frame.height, duration: 6.0)
+        let remove = SKAction.removeFromParent()
+        asteroid.run(SKAction.sequence([move, remove]))
     }
     
 }
