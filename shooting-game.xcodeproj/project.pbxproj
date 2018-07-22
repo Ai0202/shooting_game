@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DEA454F21041FA000CA6EC7 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA454E21041F9F00CA6EC7 /* heart.png */; };
+		0DEA4551210424E100CA6EC7 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA4550210424E100CA6EC7 /* spaceship.png */; };
+		0DEA45542104281100CA6EC7 /* asteroid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA45522104281000CA6EC7 /* asteroid1.png */; };
+		0DEA45552104281100CA6EC7 /* asteroid2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA45532104281000CA6EC7 /* asteroid2.png */; };
+		0DEA4557210429FD00CA6EC7 /* earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA4556210429FC00CA6EC7 /* earth.png */; };
+		0DEA45592104326D00CA6EC7 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA45582104326C00CA6EC7 /* start.png */; };
+		0DEA455D2104336800CA6EC7 /* asteroid3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA455C2104336700CA6EC7 /* asteroid3.png */; };
 		0DFC518A2102B92200909333 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFC51892102B92200909333 /* AppDelegate.swift */; };
 		0DFC518C2102B92200909333 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC518B2102B92200909333 /* GameScene.sks */; };
 		0DFC518E2102B92200909333 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC518D2102B92200909333 /* Actions.sks */; };
@@ -16,17 +23,17 @@
 		0DFC51972102B92400909333 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51962102B92400909333 /* Assets.xcassets */; };
 		0DFC519A2102B92400909333 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51982102B92400909333 /* LaunchScreen.storyboard */; };
 		0DFC51A82102C27400909333 /* missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A12102C27200909333 /* missile.png */; };
-		0DFC51A92102C27400909333 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A22102C27200909333 /* heart.png */; };
-		0DFC51AA2102C27400909333 /* asteroid3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A32102C27300909333 /* asteroid3.png */; };
-		0DFC51AB2102C27400909333 /* earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A42102C27300909333 /* earth.png */; };
-		0DFC51AC2102C27400909333 /* asteroid2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A52102C27300909333 /* asteroid2.png */; };
-		0DFC51AD2102C27400909333 /* spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A62102C27400909333 /* spaceship.png */; };
-		0DFC51AE2102C27400909333 /* asteroid1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51A72102C27400909333 /* asteroid1.png */; };
 		0DFC51B02102D4C300909333 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51AF2102D4C300909333 /* Explosion.sks */; };
-		0DFC51B4210334D700909333 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC51B3210334D700909333 /* start.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DEA454E21041F9F00CA6EC7 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../../../../../../Downloads/heart.png; sourceTree = "<group>"; };
+		0DEA4550210424E100CA6EC7 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spaceship.png; path = ../../../../../../Downloads/spaceship.png; sourceTree = "<group>"; };
+		0DEA45522104281000CA6EC7 /* asteroid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid1.png; path = ../../../../../../Downloads/asteroid1.png; sourceTree = "<group>"; };
+		0DEA45532104281000CA6EC7 /* asteroid2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid2.png; path = ../../../../../../Downloads/asteroid2.png; sourceTree = "<group>"; };
+		0DEA4556210429FC00CA6EC7 /* earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = earth.png; path = ../../../../../../Downloads/earth.png; sourceTree = "<group>"; };
+		0DEA45582104326C00CA6EC7 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		0DEA455C2104336700CA6EC7 /* asteroid3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid3.png; path = ../../../../../../Downloads/asteroid3.png; sourceTree = "<group>"; };
 		0DFC51862102B92200909333 /* shooting-game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shooting-game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DFC51892102B92200909333 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DFC518B2102B92200909333 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -38,14 +45,7 @@
 		0DFC51992102B92400909333 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DFC519B2102B92400909333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DFC51A12102C27200909333 /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
-		0DFC51A22102C27200909333 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
-		0DFC51A32102C27300909333 /* asteroid3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid3.png; sourceTree = "<group>"; };
-		0DFC51A42102C27300909333 /* earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earth.png; sourceTree = "<group>"; };
-		0DFC51A52102C27300909333 /* asteroid2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid2.png; sourceTree = "<group>"; };
-		0DFC51A62102C27400909333 /* spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spaceship.png; sourceTree = "<group>"; };
-		0DFC51A72102C27400909333 /* asteroid1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = asteroid1.png; sourceTree = "<group>"; };
 		0DFC51AF2102D4C300909333 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
-		0DFC51B3210334D700909333 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = start.png; path = ../../../../../../Downloads/start.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,14 +78,14 @@
 		0DFC51882102B92200909333 /* shooting-game */ = {
 			isa = PBXGroup;
 			children = (
-				0DFC51B3210334D700909333 /* start.png */,
-				0DFC51A72102C27400909333 /* asteroid1.png */,
-				0DFC51A52102C27300909333 /* asteroid2.png */,
-				0DFC51A32102C27300909333 /* asteroid3.png */,
-				0DFC51A42102C27300909333 /* earth.png */,
-				0DFC51A22102C27200909333 /* heart.png */,
+				0DEA45582104326C00CA6EC7 /* start.png */,
+				0DEA45522104281000CA6EC7 /* asteroid1.png */,
+				0DEA45532104281000CA6EC7 /* asteroid2.png */,
+				0DEA455C2104336700CA6EC7 /* asteroid3.png */,
+				0DEA4556210429FC00CA6EC7 /* earth.png */,
 				0DFC51A12102C27200909333 /* missile.png */,
-				0DFC51A62102C27400909333 /* spaceship.png */,
+				0DEA454E21041F9F00CA6EC7 /* heart.png */,
+				0DEA4550210424E100CA6EC7 /* spaceship.png */,
 				0DFC51892102B92200909333 /* AppDelegate.swift */,
 				0DFC518B2102B92200909333 /* GameScene.sks */,
 				0DFC518D2102B92200909333 /* Actions.sks */,
@@ -158,20 +158,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DFC51AE2102C27400909333 /* asteroid1.png in Resources */,
 				0DFC51A82102C27400909333 /* missile.png in Resources */,
 				0DFC51952102B92200909333 /* Main.storyboard in Resources */,
-				0DFC51AD2102C27400909333 /* spaceship.png in Resources */,
+				0DEA454F21041FA000CA6EC7 /* heart.png in Resources */,
 				0DFC518C2102B92200909333 /* GameScene.sks in Resources */,
 				0DFC51B02102D4C300909333 /* Explosion.sks in Resources */,
-				0DFC51B4210334D700909333 /* start.png in Resources */,
+				0DEA45542104281100CA6EC7 /* asteroid1.png in Resources */,
+				0DEA45592104326D00CA6EC7 /* start.png in Resources */,
 				0DFC51972102B92400909333 /* Assets.xcassets in Resources */,
-				0DFC51A92102C27400909333 /* heart.png in Resources */,
-				0DFC51AB2102C27400909333 /* earth.png in Resources */,
 				0DFC519A2102B92400909333 /* LaunchScreen.storyboard in Resources */,
-				0DFC51AA2102C27400909333 /* asteroid3.png in Resources */,
+				0DEA4557210429FD00CA6EC7 /* earth.png in Resources */,
+				0DEA4551210424E100CA6EC7 /* spaceship.png in Resources */,
+				0DEA455D2104336800CA6EC7 /* asteroid3.png in Resources */,
+				0DEA45552104281100CA6EC7 /* asteroid2.png in Resources */,
 				0DFC518E2102B92200909333 /* Actions.sks in Resources */,
-				0DFC51AC2102C27400909333 /* asteroid2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
