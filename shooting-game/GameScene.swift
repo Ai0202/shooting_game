@@ -104,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         asteroidNode.removeFromParent()
         if target.categoryBitMask == missileCategory {
             targetNode.removeFromParent()
-            score += 5
+            score += 10
         }
         
         self.run(SKAction.wait(forDuration: 1.0)) {
@@ -190,16 +190,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addScoreLabel() {
         scoreLabel = SKLabelNode(text: "Score: 0")
-        scoreLabel.fontName = "Papyrus"
+        scoreLabel.fontName = "Thonburi"
         scoreLabel.fontSize = 50
-        scoreLabel.position = CGPoint(x: -frame.width / 2 + scoreLabel.frame.width / 2 + 50, y: frame.height / 2 - scoreLabel.frame.height * 5)
+        scoreLabel.position = CGPoint(x: -frame.width / 2 + scoreLabel.frame.width / 2 + 50, y: frame.height / 2 - scoreLabel.frame.height * 3)
         addChild(scoreLabel)
     }
     
     func addBestScoreLabel() {
         let bestScore = UserDefaults.standard.integer(forKey: "bestScore")
         let bestScoreLabel = SKLabelNode(text: "Best Score: \(bestScore)")
-        bestScoreLabel.fontName = "Papyrus"
+        bestScoreLabel.fontName = "Thonburi"
         bestScoreLabel.fontSize = 30
         bestScoreLabel.position = scoreLabel.position.applying(CGAffineTransform(translationX: 0, y: -bestScoreLabel.frame.height * 1.5))
         addChild(bestScoreLabel)
